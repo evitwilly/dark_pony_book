@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">evilbirth</string>
+    <string name="birth_of_evil">Рождение зла</string>
+    <string name="settings">Настройки</string>
+    <string name="themes">Темы:</string>
+    <string name="font_size">Размер шрифта:</string>
+</resources>
