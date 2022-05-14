@@ -8,3 +8,15 @@
 
 Скрины приложения:
 
+<table>
+  <tr>
+    <td><img src="screens/screen1.jpg"/></td>
+    <td><img src="screens/screen2.jpg"/></td>
+    <td><img src="screens/screen3.jpg"/></td>
+  </tr>
+  <tr>
+    <td><img src="screens/screen4.jpg"/></td>
+    <td><img src="screens/screen5.jpg"/></td>
+    <td><img src="screens/screen6.jpg"/></td>
+  </tr>
+</table>
