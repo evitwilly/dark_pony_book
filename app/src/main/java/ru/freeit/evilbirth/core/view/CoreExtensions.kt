@@ -9,6 +9,7 @@ import android.view.ViewTreeObserver
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import ru.freeit.evilbirth.core.view.layout.LP
 import kotlin.math.roundToInt
 
@@ -29,6 +30,12 @@ fun View.afterMeasure(func: () -> Unit) {
 
 fun TextView.fontSize(sp: Float) {
     setTextSize(TypedValue.COMPLEX_UNIT_SP, sp)
+}
+
+fun RecyclerView.koeff() : Float {
+    val maxScroll = computeVerticalScrollRange()
+    val currentScroll = computeVerticalScrollOffset() + computeVerticalScrollExtent()
+    return currentScroll / maxScroll.toFloat() // 0f..1f
 }
 
 fun Context.colorBy(@ColorRes resId: Int) : Int {

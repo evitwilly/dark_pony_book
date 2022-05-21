@@ -45,3 +45,14 @@ val View.opensans_medium: Typeface
         return typefaceCache[openSansMedium]!!
     }
 
+private const val openSansSemiBold = "OpenSans-SemiBold.ttf"
+val View.opensans_semibold: Typeface
+    get() {
+        if (!typefaceCache.containsKey(openSansSemiBold)) {
+            val font = Typeface.createFromAsset(resources.assets, openSansSemiBold)
+            typefaceCache[openSansSemiBold] = font
+        }
+        return typefaceCache[openSansSemiBold]!!
+    }
+
+

@@ -40,7 +40,7 @@ class ChapterListFragment : BaseFragment() {
                         navigator.beginTransaction()
                             .replace(
                                 R.id.fragment_container,
-                                ParagraphListFragment.newInstance(id, name)
+                                ParagraphListFragment.newInstance(id)
                             )
                             .addToBackStack(null)
                             .commit()

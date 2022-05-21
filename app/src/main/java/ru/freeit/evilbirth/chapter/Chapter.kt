@@ -12,6 +12,8 @@ class Chapter(
     fun name(view: TextView) {
         view.text = "$id. $name"
     }
+    fun id() = id
+
     fun click(clicker: (Int, String) -> Unit, view: TextView) {
         view.setOnClickListener { clicker.invoke(id, name) }
     }
