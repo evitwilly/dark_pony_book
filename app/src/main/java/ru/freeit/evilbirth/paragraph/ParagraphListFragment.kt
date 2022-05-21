@@ -34,12 +34,15 @@ class ParagraphListFragment : BaseFragment() {
         val fontSize = app.prefs.float("text_font_size", 23f)
         val list = RecyclerView(ctx).apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            layoutParams(linearLayoutParams().matchWidth().wrapHeight().weight(1f).margins(context.dp(16)))
+            val sixteenDp = context.dp(16)
+            layoutParams(linearLayoutParams().matchWidth().wrapHeight().weight(1f).margins(
+                sixteenDp, 0, sixteenDp, sixteenDp
+            ))
             adapter = object: RecyclerView.Adapter<ParagraphViewHolder>() {
                 override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
                     ParagraphViewHolder.from(parent, fontSize)
                 override fun onBindViewHolder(holder: ParagraphViewHolder, position: Int) {
-                    holder.bind(paragraphs[position])
+                    holder.bind(position, paragraphs[position])
                 }
                 override fun getItemCount() = paragraphs.size
 

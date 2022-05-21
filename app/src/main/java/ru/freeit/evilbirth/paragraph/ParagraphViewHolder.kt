@@ -14,8 +14,14 @@ import ru.freeit.evilbirth.core.view.typeface.opensans_regular
 
 class ParagraphViewHolder(private val text: TextView) : RecyclerView.ViewHolder(text) {
 
-    fun bind(content: String) {
+    fun bind(index: Int, content: String) {
         text.text = content
+
+        if (index == 0) {
+            val params = text.layoutParams as RecyclerView.LayoutParams
+            params.topMargin = text.context.dp(16)
+            text.layoutParams = params
+        }
     }
 
     companion object {

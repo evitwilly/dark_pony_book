@@ -74,8 +74,7 @@ abstract class BaseFragment : Fragment() {
                 setColor(CoreColors.white)
             }
             padding(horizontal = ctx.dp(16), vertical = ctx.dp(8))
-            layoutParams(linearLayoutParams().matchWidth().wrapHeight()
-                .marginBottom(ctx.dp(8)))
+            layoutParams(linearLayoutParams().matchWidth().wrapHeight())
         }
         linear.addView(frameLayout)
 

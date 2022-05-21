@@ -36,7 +36,7 @@ class ChapterListFragment : BaseFragment() {
                 override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
                     PonyChapterViewHolder.from(parent)
                 override fun onBindViewHolder(holder: PonyChapterViewHolder, position: Int) {
-                    holder.bind(chapters[position]) { id, name ->
+                    holder.bind(position, chapters[position]) { id, name ->
                         navigator.beginTransaction()
                             .replace(
                                 R.id.fragment_container,
