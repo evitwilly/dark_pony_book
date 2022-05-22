@@ -26,6 +26,7 @@ object BookData {
         Chapter(19, "Колокольчик Грогара"),
         Chapter(20, "Темная пони"),
     )
+
     val paragraphs = SparseArray<List<String>>().apply {
         put(1, listOf(
             "Стоял один из последних солнечных дней весны.",
