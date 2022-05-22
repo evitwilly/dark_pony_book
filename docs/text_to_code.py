@@ -31,7 +31,7 @@ filtered_lines = [x.strip() for x in lines if x]
 chapter = 0
 text = ""
 for line in filtered_lines:
-	if chapters[chapter]['title'] == line:
+	if chapter < 20 and chapters[chapter]['title'] == line:
 		if chapter > 0:
 			text += "))\n"
 		text += "put({}, listOf(\n".format(chapters[chapter]['id'])

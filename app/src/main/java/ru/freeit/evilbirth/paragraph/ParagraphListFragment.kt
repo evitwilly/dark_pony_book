@@ -101,21 +101,19 @@ class ParagraphListFragment : BaseFragment() {
         fun scaleVerticalOffset() : Int {
             val currentKoeff = list.koeff() - initialKoeff
 
-            val height = frame.measuredHeight + ctx.dp(32)
+            val height = frame.height
+            val heightKoeff = height * initialKoeff
 
             if (currentKoeff < 0) return 0
-            return (height * currentKoeff).roundToInt()
+            return (height*currentKoeff + currentKoeff*heightKoeff).roundToInt()
         }
 
         val sliderView = View(ctx).apply {
             setBackgroundColor(CoreColors.pink500)
             afterMeasure {
                 initialKoeff = list.koeff()
-                layoutParams = layoutParams.apply {
-                    height = scaleVerticalOffset()
-                }
             }
-            layoutParams(frameLayoutParams().gravity(Gravity.END or Gravity.TOP).width(ctx.dp(3)).matchHeight())
+            layoutParams(frameLayoutParams().gravity(Gravity.END or Gravity.TOP).width(ctx.dp(3)).height(0))
         }
         frame.addView(sliderView)
 

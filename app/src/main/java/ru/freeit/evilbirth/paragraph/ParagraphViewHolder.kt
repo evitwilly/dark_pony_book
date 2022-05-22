@@ -56,6 +56,7 @@ class FooterViewHolder(private val views: FooterViewHolderViews) : RecyclerView.
                 orientation = LinearLayout.VERTICAL
                 layoutParams(recyclerLayoutParams()
                     .matchWidth().wrapHeight()
+                    .marginTop(context.dp(12))
                     .marginBottom(context.dp(12)))
             }
 
