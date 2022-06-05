@@ -15,7 +15,7 @@ import ru.freeit.evilbirth.core.view.typeface.equestria_typeface
 
 class PonyChapterViewHolder(private val text: TextView) : RecyclerView.ViewHolder(text) {
 
-    fun bind(index: Int, chapter: Chapter, clicker: (Int, String) -> Unit) {
+    fun bind(index: Int, chapter: Chapter, clicker: (Int) -> Unit) {
         chapter.name(text)
         chapter.click(clicker, text)
 

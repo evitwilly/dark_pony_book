@@ -1,7 +1,6 @@
 package ru.freeit.evilbirth.chapter
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Bundle
@@ -11,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.view.isVisible
@@ -29,6 +27,7 @@ import ru.freeit.evilbirth.core.view.layout.frameLayoutParams
 import ru.freeit.evilbirth.core.view.layout.linearLayoutParams
 import ru.freeit.evilbirth.core.view.layout.vertical
 import ru.freeit.evilbirth.core.view.typeface.woodrow_typeface
+import ru.freeit.evilbirth.core.CoreNavigator
 
 abstract class BaseFragment : Fragment() {
 
@@ -37,8 +36,10 @@ abstract class BaseFragment : Fragment() {
     private var menuView: FrameLayout? = null
     private var menuImage: ImageView? = null
 
-    protected val app by lazy { requireActivity().application as App }
+    private val mainActivity by lazy { requireActivity() }
+    protected val app by lazy { mainActivity.application as App }
     protected val ctx by lazy { requireContext() }
+    protected val navigator by lazy { CoreNavigator(mainActivity.supportFragmentManager) }
 
     fun addViewToRoot(view: View) {
         root?.addView(view)

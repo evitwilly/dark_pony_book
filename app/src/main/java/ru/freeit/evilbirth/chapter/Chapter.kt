@@ -14,7 +14,7 @@ class Chapter(
     }
     fun id() = id
 
-    fun click(clicker: (Int, String) -> Unit, view: TextView) {
-        view.setOnClickListener { clicker.invoke(id, name) }
+    fun click(clicker: (Int) -> Unit, view: TextView) {
+        view.setOnClickListener { clicker.invoke(id) }
     }
 }

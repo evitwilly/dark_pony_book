@@ -2,6 +2,7 @@ package ru.freeit.evilbirth.core.view
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import android.view.ViewTreeObserver
 import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import ru.freeit.evilbirth.core.view.layout.LP
 import kotlin.math.roundToInt
@@ -26,6 +29,21 @@ fun View.afterMeasure(func: () -> Unit) {
             func()
         }
     })
+}
+
+fun gradientDrawable(
+    color: Int = 0, width: Int = 0, height: Int = 0,
+    topLeftCorner: Float = 0f, topRightCorner: Float = 0f,
+    bottomRightCorner: Float = 0f, bottomLeftCorner: Float = 0f
+) = GradientDrawable().apply {
+    setColor(color)
+    setSize(width, height)
+    cornerRadii = floatArrayOf(
+        topLeftCorner, topLeftCorner,
+        topRightCorner, topRightCorner,
+        bottomRightCorner, bottomRightCorner,
+        bottomLeftCorner, bottomLeftCorner
+    )
 }
 
 fun TextView.fontSize(sp: Float) {

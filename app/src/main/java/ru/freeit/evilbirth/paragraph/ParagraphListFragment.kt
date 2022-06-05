@@ -1,33 +1,20 @@
 package ru.freeit.evilbirth.paragraph
 
-import android.animation.ValueAnimator
-import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
-import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.freeit.evilbirth.R
+import me.zhanghai.android.fastscroll.FastScrollNestedScrollView
+import me.zhanghai.android.fastscroll.FastScrollerBuilder
 import ru.freeit.evilbirth.chapter.BaseFragment
 import ru.freeit.evilbirth.core.data.BookData
-import ru.freeit.evilbirth.core.view.afterMeasure
 import ru.freeit.evilbirth.core.view.colors.CoreColors
 import ru.freeit.evilbirth.core.view.components.CoreFrameLayout
 import ru.freeit.evilbirth.core.view.dp
-import ru.freeit.evilbirth.core.view.koeff
-import ru.freeit.evilbirth.core.view.layout.frameLayoutParams
+import ru.freeit.evilbirth.core.view.gradientDrawable
 import ru.freeit.evilbirth.core.view.layout.linearLayoutParams
 import ru.freeit.evilbirth.core.view.layoutParams
-import kotlin.math.abs
-import kotlin.math.roundToInt
 
 class ParagraphListFragment : BaseFragment() {
 
@@ -48,83 +35,37 @@ class ParagraphListFragment : BaseFragment() {
         val next = BookData.chapters.getOrNull(chapterId)
 
         val fontSize = app.prefs.float("text_font_size", 23f)
-        val navigator = requireActivity().supportFragmentManager
-        val manager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+        val nested = FastScrollNestedScrollView(ctx).apply {
+            layoutParams(linearLayoutParams().matchWidth().wrapHeight().weight(1f))
+        }
+        frame.addView(nested)
+
         val list = RecyclerView(ctx).apply {
-            layoutManager = manager
-            val sixteenDp = context.dp(16)
-            layoutParams(linearLayoutParams().matchWidth().wrapHeight().weight(1f).margins(
-                sixteenDp, 0, sixteenDp, sixteenDp
-            ))
-            adapter = object: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-                override fun getItemViewType(position: Int): Int {
-                    return if (position == paragraphs.size) 2 else 1
-                }
-                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder {
-                    return if (viewType == 1) {
-                        ParagraphViewHolder.from(parent, fontSize)
-                    }  else {
-                        FooterViewHolder.from(parent)
-                    }
-                }
-                override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-                    if (holder is ParagraphViewHolder) {
-                        holder.bind(position, paragraphs[position])
-                    } else if (holder is FooterViewHolder) {
-                        holder.bind(prev, next,
-                            onPrevClick = {
-                                navigator.popBackStack()
-                                navigator.beginTransaction()
-                                    .replace(R.id.fragment_container, newInstance(
-                                        prev!!.id()
-                                    ))
-                                    .addToBackStack(null)
-                                    .commit()
-                            }, onNextClick = {
-                                navigator.popBackStack()
-                                navigator.beginTransaction()
-                                    .replace(R.id.fragment_container, newInstance(
-                                        next!!.id()
-                                    ))
-                                    .addToBackStack(null)
-                                    .commit()
-                            })
-                    }
-                }
-                override fun getItemCount() = paragraphs.size + 1
-
-            }
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = ParagraphAdapter(paragraphs, navigator, prev, next, fontSize)
+            isNestedScrollingEnabled = true
+            val dimen1 = ctx.dp(16)
+            setPadding(dimen1, 0, dimen1, dimen1)
         }
-        frame.addView(list)
+        nested.addView(list)
 
-        var initialKoeff = 0f
-        fun scaleVerticalOffset() : Int {
-            val currentKoeff = list.koeff() - initialKoeff
-
-            val height = frame.height
-            val heightKoeff = height * initialKoeff
-
-            if (currentKoeff < 0) return 0
-            return (height*currentKoeff + currentKoeff*heightKoeff).roundToInt()
-        }
-
-        val sliderView = View(ctx).apply {
-            setBackgroundColor(CoreColors.pink500)
-            afterMeasure {
-                initialKoeff = list.koeff()
-            }
-            layoutParams(frameLayoutParams().gravity(Gravity.END or Gravity.TOP).width(ctx.dp(3)).height(0))
-        }
-        frame.addView(sliderView)
-
-        list.addOnScrollListener(object: RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                sliderView.layoutParams = sliderView.layoutParams.apply {
-                    height = scaleVerticalOffset()
-                }
-            }
-        })
+        val builder = FastScrollerBuilder(nested).setThumbDrawable(
+            gradientDrawable(
+                color = CoreColors.pink500,
+                width = ctx.dp(8),
+                height = ctx.dp(32),
+                topLeftCorner = ctx.dp(2f),
+                bottomLeftCorner = ctx.dp(2f)
+            )
+        ).setTrackDrawable(
+            gradientDrawable(
+                color = CoreColors.transparent,
+                width = ctx.dp(8)
+            )
+        )
+        builder.disableScrollbarAutoHide()
+        builder.build()
 
         addViewToRoot(frame)
     }
@@ -136,4 +77,5 @@ class ParagraphListFragment : BaseFragment() {
             arguments = bundleOf(idKey to id)
         }
     }
+
 }

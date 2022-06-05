@@ -54,16 +54,8 @@ class FooterViewHolder(private val views: FooterViewHolderViews) : RecyclerView.
             val ctx = parent.context
             val linearLayout = CoreLinearLayout(ctx).apply {
                 orientation = LinearLayout.VERTICAL
-                layoutParams(recyclerLayoutParams()
-                    .matchWidth().wrapHeight()
-                    .marginTop(context.dp(12))
-                    .marginBottom(context.dp(12)))
-            }
-
-            val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-                color = CoreColors.pink500
-                style = Paint.Style.STROKE
-                strokeWidth = ctx.dp(4f)
+                setPadding(0, context.dp(12), 0, context.dp(12))
+                layoutParams(recyclerLayoutParams().matchWidth().wrapHeight())
             }
 
             val prev = CoreTextView(parent.context).apply {
@@ -106,7 +98,8 @@ class ParagraphViewHolder(private val text: TextView) : RecyclerView.ViewHolder(
                 typeface = opensans_regular
                 setTextColor(CoreColors.black)
                 fontSize(fontSize)
-                layoutParams(recyclerLayoutParams().matchWidth().wrapHeight().marginBottom(context.dp(12)))
+                setPadding(0, 0, 0, context.dp(12))
+                layoutParams(recyclerLayoutParams().matchWidth().wrapHeight())
             }
             return ParagraphViewHolder(text)
         }
