@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import ru.freeit.evilbirth.chapter.ChapterListFragment
+import ru.freeit.evilbirth.core.CoreNavigator
 import ru.freeit.evilbirth.core.view.colors.CoreColors
 
 
@@ -14,16 +15,12 @@ class MainActivity : AppCompatActivity() {
 
         window.statusBarColor = CoreColors.pink700
 
-        val frameLayout = FrameLayout(this)
-        frameLayout.id = R.id.fragment_container
+        setContentView(FrameLayout(this).apply {
+            id = R.id.fragment_container
+        })
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, ChapterListFragment())
-                .commit()
-        }
-
-        setContentView(frameLayout)
+        val navigator = CoreNavigator(supportFragmentManager)
+        navigator.init(savedInstanceState, ChapterListFragment())
     }
 
 }

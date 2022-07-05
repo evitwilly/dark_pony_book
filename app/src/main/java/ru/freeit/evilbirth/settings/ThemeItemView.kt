@@ -1,4 +1,4 @@
-package ru.freeit.evilbirth.chapter
+package ru.freeit.evilbirth.settings
 
 import android.R
 import android.content.Context

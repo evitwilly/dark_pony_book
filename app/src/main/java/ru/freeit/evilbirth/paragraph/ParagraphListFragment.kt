@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import me.zhanghai.android.fastscroll.FastScrollNestedScrollView
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
-import ru.freeit.evilbirth.chapter.BaseFragment
+import ru.freeit.evilbirth.core.BaseFragment
 import ru.freeit.evilbirth.core.data.BookData
 import ru.freeit.evilbirth.core.view.colors.CoreColors
 import ru.freeit.evilbirth.core.view.components.CoreFrameLayout

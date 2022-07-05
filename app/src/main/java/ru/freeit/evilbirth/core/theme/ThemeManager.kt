@@ -17,7 +17,9 @@ class ThemeManager(private val prefs: IntPrefs) {
         listeners.add(listener)
         listener.invoke(currentTheme)
     }
-    fun removeThemeListener(listener: (Theme) -> Unit) { listeners.remove(listener) }
+    fun removeThemeListener(listener: (Theme) -> Unit) {
+        listeners.remove(listener)
+    }
 
     fun light() { changeTheme(Theme.LIGHT) }
     fun dark() { changeTheme(Theme.DARK) }

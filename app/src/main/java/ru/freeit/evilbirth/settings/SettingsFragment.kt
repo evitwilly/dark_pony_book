@@ -1,14 +1,13 @@
-package ru.freeit.evilbirth.chapter
+package ru.freeit.evilbirth.settings
 
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.LayerDrawable
-import android.graphics.drawable.ShapeDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.*
 import ru.freeit.evilbirth.R
+import ru.freeit.evilbirth.core.BaseFragment
 import ru.freeit.evilbirth.core.theme.Theme
 import ru.freeit.evilbirth.core.view.*
 import ru.freeit.evilbirth.core.view.colors.CoreColors

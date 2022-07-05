@@ -5,9 +5,11 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.freeit.evilbirth.R
+import ru.freeit.evilbirth.core.BaseFragment
 import ru.freeit.evilbirth.core.data.BookData
 import ru.freeit.evilbirth.core.view.layout.linearLayoutParams
 import ru.freeit.evilbirth.core.view.layoutParams
+import ru.freeit.evilbirth.settings.SettingsFragment
 
 class ChapterListFragment : BaseFragment() {
 

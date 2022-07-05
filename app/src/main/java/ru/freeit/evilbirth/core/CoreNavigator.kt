@@ -1,5 +1,6 @@
 package ru.freeit.evilbirth.core
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import ru.freeit.evilbirth.R
@@ -15,10 +16,12 @@ class CoreNavigator(private val fragmentManager: FragmentManager) {
             .commit()
     }
 
-    fun init(initialFragment: Fragment) {
-        fragmentManager.beginTransaction()
-            .add(fragmentContainerId, initialFragment)
-            .commit()
+    fun init(state: Bundle?, initialFragment: Fragment) {
+        if (state == null) {
+            fragmentManager.beginTransaction()
+                .add(fragmentContainerId, initialFragment)
+                .commit()
+        }
     }
 
     fun back() {

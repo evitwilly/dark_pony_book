@@ -1,4 +1,4 @@
-package ru.freeit.evilbirth.chapter
+package ru.freeit.evilbirth.core
 
 import android.content.res.ColorStateList
 import android.graphics.drawable.GradientDrawable
@@ -15,7 +15,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import ru.freeit.evilbirth.R
-import ru.freeit.evilbirth.core.App
+import ru.freeit.evilbirth.chapter.ChapterListFragment
 import ru.freeit.evilbirth.core.theme.Theme
 import ru.freeit.evilbirth.core.view.*
 import ru.freeit.evilbirth.core.view.colors.CoreColors
@@ -27,7 +27,6 @@ import ru.freeit.evilbirth.core.view.layout.frameLayoutParams
 import ru.freeit.evilbirth.core.view.layout.linearLayoutParams
 import ru.freeit.evilbirth.core.view.layout.vertical
 import ru.freeit.evilbirth.core.view.typeface.woodrow_typeface
-import ru.freeit.evilbirth.core.CoreNavigator
 
 abstract class BaseFragment : Fragment() {
 

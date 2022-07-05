@@ -52,7 +52,6 @@ class ChapterRippleDrawable(ctx: Context, primaryColor: Int) : RippleDrawable(
                 cubicTo(waveWidth, height, -waveWidth, height / 2f, waveWidth, 0f)
                 cubicTo(waveWidth, 0f, width - waveWidth, 0f, width - waveWidth, ctx.dp(16f))
                 quadTo(width - waveWidth, ctx.dp(16f), width, height)
-                //cubicTo(width - waveWidth, ctx.dp(16f), width, ctx.dp(16f), width, height)
                 lineTo(waveWidth, height)
             }, maskPaint)
         }
