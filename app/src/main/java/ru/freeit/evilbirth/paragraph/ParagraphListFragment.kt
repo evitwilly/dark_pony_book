@@ -23,7 +23,7 @@ class ParagraphListFragment : BaseFragment() {
 
         val args = requireArguments()
 
-        val chapter = BookData.chapters[args.getInt(idKey, 1) - 1]
+        val chapter = BookData.chapters[args.getInt(idKey, 0)]
         changeTitle(chapter.toString())
 
         val frame = CoreFrameLayout(ctx)
@@ -31,8 +31,8 @@ class ParagraphListFragment : BaseFragment() {
         val chapterId = args.getInt(idKey, 1)
         val paragraphs = BookData.paragraphs[chapterId]
 
-        val prev = BookData.chapters.getOrNull(chapterId - 2)
-        val next = BookData.chapters.getOrNull(chapterId)
+        val prev = BookData.chapters.getOrNull(chapterId - 1)
+        val next = BookData.chapters.getOrNull(chapterId + 1)
 
         val fontSize = app.prefs.float("text_font_size", 23f)
 
